@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8FS-5f-sEc">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Map-->
+        <scene sceneID="qNy-ig-Lhe">
+            <objects>
+                <viewController id="S41-jF-N8n" customClass="placesMapViewController" customModule="ex03" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TI4-oS-R3l">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="D8i-ar-8nB">
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                            </mapView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="lF3-F4-C0E">
+                                <rect key="frame" x="20" y="762" width="374" height="32"/>
+                                <segments>
+                                    <segment title="Standart"/>
+                                    <segment title="Satellite"/>
+                                    <segment title="Hybrid"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentAction:" destination="S41-jF-N8n" eventType="valueChanged" id="cjW-kQ-WuI"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="YBY-ip-ogG"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="D8i-ar-8nB" firstAttribute="leading" secondItem="YBY-ip-ogG" secondAttribute="leading" id="AhK-KJ-fs3"/>
+                            <constraint firstItem="YBY-ip-ogG" firstAttribute="bottom" secondItem="D8i-ar-8nB" secondAttribute="bottom" id="EuL-KB-ej3"/>
+                            <constraint firstItem="YBY-ip-ogG" firstAttribute="trailing" secondItem="lF3-F4-C0E" secondAttribute="trailing" constant="20" id="VMR-Qa-bWH"/>
+                            <constraint firstItem="D8i-ar-8nB" firstAttribute="top" secondItem="YBY-ip-ogG" secondAttribute="top" id="Yvt-Kj-wFP"/>
+                            <constraint firstItem="YBY-ip-ogG" firstAttribute="trailing" secondItem="D8i-ar-8nB" secondAttribute="trailing" id="ZFe-5Z-60D"/>
+                            <constraint firstItem="YBY-ip-ogG" firstAttribute="bottom" secondItem="lF3-F4-C0E" secondAttribute="bottom" constant="20" id="fwe-hf-jTY"/>
+                            <constraint firstItem="lF3-F4-C0E" firstAttribute="leading" secondItem="YBY-ip-ogG" secondAttribute="leading" constant="20" id="yxq-aB-D1E"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Map" image="map" catalog="system" id="qQl-Qr-3ry"/>
+                    <connections>
+                        <outlet property="placesMapView" destination="D8i-ar-8nB" id="XPA-9k-b6s"/>
+                        <outlet property="segmentOutlet" destination="lF3-F4-C0E" id="7eS-ZO-HUc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MqY-6M-IPN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1562" y="455"/>
+        </scene>
+        <!--Places-->
+        <scene sceneID="X3x-gl-Eft">
+            <objects>
+                <viewController id="BIA-kN-1ag" customClass="placeViewController" customModule="ex03" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eiM-mA-s88">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Places" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eqi-IX-uTa">
+                                <rect key="frame" x="159" y="427.5" width="96.5" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="0un-oD-741">
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlacesListCell" id="qN2-X0-IXF">
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qN2-X0-IXF" id="R4L-4Z-z2j">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="myC-hg-vcI"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="eqi-IX-uTa" firstAttribute="centerX" secondItem="eiM-mA-s88" secondAttribute="centerX" id="0Zk-An-DB4"/>
+                            <constraint firstItem="0un-oD-741" firstAttribute="leading" secondItem="myC-hg-vcI" secondAttribute="leading" id="EFY-bt-k3I"/>
+                            <constraint firstItem="eqi-IX-uTa" firstAttribute="centerY" secondItem="eiM-mA-s88" secondAttribute="centerY" id="I6V-ZC-IAP"/>
+                            <constraint firstItem="0un-oD-741" firstAttribute="top" secondItem="myC-hg-vcI" secondAttribute="top" id="Idi-U3-1zS"/>
+                            <constraint firstItem="myC-hg-vcI" firstAttribute="bottom" secondItem="0un-oD-741" secondAttribute="bottom" id="r7C-bO-hnJ"/>
+                            <constraint firstItem="myC-hg-vcI" firstAttribute="trailing" secondItem="0un-oD-741" secondAttribute="trailing" id="ykx-fN-g6a"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Places" image="star.circle" catalog="system" id="Vte-r0-S31">
+                        <imageReference key="largeContentSizeImage" image="star.circle" catalog="system" symbolScale="large"/>
+                    </tabBarItem>
+                    <connections>
+                        <outlet property="placesTableList" destination="0un-oD-741" id="GSJ-9y-Tpc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Or5-Vg-GmD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-184" y="455"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="qFY-GH-wIY">
+            <objects>
+                <tabBarController id="8FS-5f-sEc" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="J2X-ER-bEG">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BIA-kN-1ag" kind="relationship" relationship="viewControllers" id="cfl-S1-xY2"/>
+                        <segue destination="S41-jF-N8n" kind="relationship" relationship="viewControllers" id="vnG-E0-Vux"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hey-nt-JU3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-876" y="76"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="map" catalog="system" width="128" height="110"/>
+        <image name="star.circle" catalog="system" width="128" height="121"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
