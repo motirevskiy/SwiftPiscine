@@ -13,6 +13,7 @@ import CoreLocation
 class ViewController: UIViewController {
 
     var place: String?
+    var date: Date?
     var temperature: String?
     var recast: RecastAIClient?
     var darkSky: DarkSkyClient?
@@ -24,16 +25,21 @@ class ViewController: UIViewController {
     var forcastText: String = "Enter city" {
         didSet {
             DispatchQueue.main.async {
-                self.answerLabel.text = ""
-                self.answerLabel.text! = "In " + self.place! + " is:\n" + self.forcastText
-                self.answerLabel.text! += "\n And temperature is\n" + self.temperature! + "°C"
+                self.PlaceLabel.text = "At " + self.place! + " is"
+                self.tempLabel.text = self.temperature! + "°C"
+                self.answerLabel.text = self.forcastText
+                self.revelatDate.text = "revelant for " + self.dateOutlet.date.formatted()
             }
         }
     }
     
+    @IBOutlet weak var revelantDate: UILabel!
+    @IBOutlet weak var revelatDate: UILabel!
+    @IBOutlet weak var tempLabel: UILabel!
+    @IBOutlet weak var PlaceLabel: UILabel!
     @IBOutlet weak var answerLabel: UILabel!
     @IBOutlet weak var textField: UITextField!
-    
+    @IBOutlet weak var dateOutlet: UIDatePicker!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,7 +53,9 @@ class ViewController: UIViewController {
     @IBAction func searchButton(_ sender: UIButton) {
         if textField.text != nil   {
             make(request: textField.text!)
+            date = dateOutlet.date
         }
+        self.view.endEditing(true)
     }
 
     func make(request: String)  {
@@ -75,7 +83,7 @@ class ViewController: UIViewController {
     
     func getForcastFromDarkSky() {
         if locationCoordinates != nil {
-            darkSky?.getForecast(location: locationCoordinates!) { result in
+            darkSky?.getForecast(location: locationCoordinates!, time: date!, completion: { result in
                 switch result {
                     case .success((let currentForecast, _)):
                         self.forcastText = currentForecast.currently?.summary?.description ?? "Oups..."
@@ -83,7 +91,7 @@ class ViewController: UIViewController {
                     case .failure:
                         self.forcastText = "ERROR"
                 }
-            }
+            })
         }
     }
 }
